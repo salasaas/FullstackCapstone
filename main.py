@@ -266,19 +266,93 @@ def encoding():
 ##################################Tevanah Charlemagne##########################################
 ###############################################################################################
 
-def main(argv):
-    tools = [1,2,3]
+###############################################################################################
+#####################################Eric Deshield#############################################
+def generate_hashes(input_text, md5_output, sha1_output, sha256_output, base64_output):
+    # Generate the MD5
+    md5_hash = hashlib.md5(input_text.encode()).hexdigest()
+    md5_output.config(text=md5_hash)
 
+    # Generate the SHA-1
+    sha1_hash = hashlib.sha1(input_text.encode()).hexdigest()
+    sha1_output.config(text=sha1_hash)
+
+    # Generate the SHA-256
+    sha256_hash = hashlib.sha256(input_text.encode()).hexdigest()
+    sha256_output.config(text=sha256_hash)
+
+    # Generate the Base64
+    base64_encoded = base64.b64encode(input_text.encode()).decode()
+    base64_output.config(text=base64_encoded)
+
+    # Change color of hash
+    md5_output.config(fg='blue')
+    sha1_output.config(fg='green')
+    sha256_output.config(fg='purple')
+    base64_output.config(fg='orange')
+
+def gui():
+    # Create the main window
+    window = tk.Tk()
+    window.title("Hash Generator and Base64 Encoder")
+    window.geometry("500x350")
+
+    # Create the input field and label
+    input_label = tk.Label(window, text="Input text:")
+    input_label.pack()
+    input_field = tk.Entry(window)
+    input_field.pack()
+
+    # Create the buttons for generating the hashes
+    generate_button = tk.Button(window, text="Generate Hashes and Encode", 
+                                command=lambda: generate_hashes(input_field.get(), 
+                                                                md5_output, 
+                                                                sha1_output, 
+                                                                sha256_output, 
+                                                                base64_output))
+    generate_button.pack()
+
+    # Create the labels for displaying the hashes and the Ceaser Cipher
+    md5_label = tk.Label(window, text="MD5 Hash:")
+    md5_label.pack()
+    md5_output = tk.Label(window, text="")
+    md5_output.pack()
+
+    sha1_label = tk.Label(window, text="SHA-1 Hash:")
+    sha1_label.pack()
+    sha1_output = tk.Label(window, text="")
+    sha1_output.pack()
+
+    sha256_label = tk.Label(window, text="SHA-256 Hash:")
+    sha256_label.pack()
+    sha256_output = tk.Label(window, text="")
+    sha256_output.pack()
+
+    base64_label = tk.Label(window, text="Base64 Encoding:")
+    base64_label.pack()
+    base64_output = tk.Label(window, text="")
+    base64_output.pack()
+
+    # Run the GUI main loop
+    window.mainloop()
+#####################################Eric Deshield#############################################
+###############################################################################################
+
+def main(argv):
+    tools = [1,2,3,4]
+
+    print("This is a multi-functional tool. Follow prompts to utilize the proper functions.")
     print("Select tool: ")
     print("1. Hash Generator/Identifier")
     print("2. Encoding/Decoding Methods")
-    print("3. Caesar Cipher Encrypter/Decrypter and Brute Force Decrypter")
+    print("3. Hashing w/ Graphical User Interface")
+    print("4. Caesar Cipher Encrypter/Decrypter and Brute Force Decrypter")
 
     while True:
         try:
             option = int(input("\nEnter Number to Select Tool: "))
             while option not in tools:
-                option = int(input("Invalid Entry! Enter options '1', '2', or '3': "))
+                option = int(input("Invalid Entry! Enter options '1', '2', '3', or '4': "))
             break
         except ValueError:
             print("Invalid input! Please enter a valid integer.")
@@ -287,6 +361,8 @@ def main(argv):
         hashes()
     elif option == 2:
         encoding()
+    elif option == 3:
+        gui()
     else:
         caesar()
 
