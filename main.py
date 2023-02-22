@@ -233,19 +233,31 @@ class EncoderDecoder:
         message_bytes = base64.b64decode(base64_bytes)
         decoded = message_bytes.decode('ascii')
         return decoded
+    
+    def binary_encode(self):
+        return ''.join(format(ord(c), '08b') for c in self.message)
+    
+    def binary_decode(self):
+        bytes_list = [self.message[i:i+8] for i in range(0, len(self.message), 8)]
+        int_list = [int(byte, 2) for byte in bytes_list]
+        char_list = [chr(num) for num in int_list]
+        original_str = ''.join(char_list)
+        return original_str
 
 def encoding():
-    encoding_types = [1,2]
+    encoding_types = [1,2,3,4]
 
-    print("Select Option:")
+    print("\nSelect Option:")
     print("1. Encode Base64")
     print("2. Decode Base64")
+    print("3. Encode Binary")
+    print("4. Decode Binary")
 
     while True:
         try:
             option = int(input("\nEnter Number to Select Option: "))
             while option not in encoding_types:
-                option = int(input("Invalid Entry! Enter options '1' or '2': "))
+                option = int(input("Invalid Entry! Enter options '1', '2', '3',  or '4': "))
             break
         except ValueError:
             print("Invalid input! Please enter a valid integer.")
@@ -260,9 +272,15 @@ def encoding():
     if option == 1:
         result = code.base64_encode()
         print(f"Input: {message} ==> Base64: {result}")
-    else:
+    elif option == 2:
         result = code.base64_decode()
         print(f"Base 64: {message} ==> Decoded Base64: {result}")
+    elif option == 3:
+        result = code.binary_encode()
+        print(f"Input: {message} ==> Binary: {result}")
+    else:
+        result = code.binary_decode()
+        print(f"Binary: {message} ==> Decoded Binary: {result}")
 ##################################Tevanah Charlemagne##########################################
 ###############################################################################################
 
