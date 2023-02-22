@@ -71,11 +71,6 @@ def caesar():
     options = [1, 2, 3]
     keys = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
 
-    try:
-        user_input = input("Enter MESSAGE to encrypt/decrypt: ")
-    except:
-        print("An Error occurred processing input.")
-
     print("\nCaesar Cipher Algorithm Options:")
     print("1. Encrypt Message")
     print("2. Decrypt Message")
@@ -89,6 +84,11 @@ def caesar():
             break
         except ValueError:
             print("Invalid input! Please enter a valid integer.")
+
+    try:
+        user_input = input("Enter MESSAGE to encrypt/decrypt: ")
+    except:
+        print("An Error occurred processing input.")
     
     if option == 1 or option == 2:
         while True:
