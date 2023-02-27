@@ -71,6 +71,15 @@ def caesar():
     options = [1, 2, 3]
     keys = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
 
+    banner = """
+       _________    ___________ ___    ____ 
+      / ____/   |  / ____/ ___//   |  / __ \\
+     / /   / /| | / __/  \__ \/ /| | / /_/ /
+    / /___/ ___ |/ /___ ___/ / ___ |/ _, _/ 
+    \____/_/  |_/_____//____/_/  |_/_/ |_|   
+    """
+    print(banner)
+
     print("\nCaesar Cipher Algorithm Options:")
     print("1. Encrypt Message")
     print("2. Decrypt Message")
@@ -247,6 +256,15 @@ class EncoderDecoder:
 def encoding():
     encoding_types = [1,2,3,4]
 
+    banner = """
+     _____ _   _  ____ ___  ____  _____ ____      ______  _____ ____ ___  ____  _____ ____  
+    | ____| \ | |/ ___/ _ \|  _ \| ____|  _ \    / /  _ \| ____/ ___/ _ \|  _ \| ____|  _ \ 
+    |  _| |  \| | |  | | | | | | |  _| | |_) |  / /| | | |  _|| |  | | | | | | |  _| | |_) |
+    | |___| |\  | |__| |_| | |_| | |___|  _ <  / / | |_| | |__| |__| |_| | |_| | |___|  _ < 
+    |_____|_| \_|\____\___/|____/|_____|_| \_\/_/  |____/|_____\____\___/|____/|_____|_| \_\
+    """
+    print(banner)
+
     print("\nSelect Option:")
     print("1. Encode Base64")
     print("2. Decode Base64")
@@ -346,7 +364,7 @@ def gui():
     sha256_output = tk.Label(window, text="")
     sha256_output.pack()
 
-    base64_label = tk.Label(window, text="Base64 Encoding:")
+    base64_label = tk.Label(window, text="Base64 Encoding of Input:")
     base64_label.pack()
     base64_output = tk.Label(window, text="")
     base64_output.pack()
@@ -359,6 +377,15 @@ def gui():
 def main(argv):
     tools = [1,2,3,4]
 
+    banner = """
+     _   _ _   _____ ____      _    
+    | | | | | |_   _|  _ \    / \   
+    | | | | |   | | | |_) |  / _ \  
+    | |_| | |___| | |  _ <  / ___ \ 
+     \___/|_____|_| |_| \_\/_/   \_\
+    """
+    print(banner)
+
     print("This is a multi-functional tool. Follow prompts to utilize the proper functions.")
     print("Select tool: ")
     print("1. Hash Generator/Identifier")
@@ -368,7 +395,7 @@ def main(argv):
 
     while True:
         try:
-            option = int(input("\nEnter Number to Select Tool: "))
+            option = int(input("\nEnter a Number to Select Tool: "))
             while option not in tools:
                 option = int(input("Invalid Entry! Enter options '1', '2', '3', or '4': "))
             break
